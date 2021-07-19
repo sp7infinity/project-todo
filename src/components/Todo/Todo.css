@@ -1,0 +1,47 @@
+.todo {
+    background-color: var(--todo-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+    align-items: center;
+  }
+  
+  .todo:hover button {
+    visibility: visible;
+  }
+  
+  .active {
+    background-color: var(--todo-active-color);
+  }
+  
+  .text-section {
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .text-input {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    overflow-x: auto;
+    resize: none;
+    word-wrap: anywhere;
+    height: 18px;
+    max-height: 38px;
+  }
+  
+  .button-section {
+    display: flex;
+  }
+  
+  .action-button {
+    visibility: hidden;
+    margin-left: 2px;
+    margin-right: 2px;
+  }

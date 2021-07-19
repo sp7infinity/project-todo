@@ -1,0 +1,83 @@
+.platform {
+    display: grid;
+    grid-template-columns: 45px 350px 350px 350px;
+    grid-template-rows: 45px 350px 350px;
+    grid-template-areas:
+    ".              urgent    not-urgent  ."
+    "important      do        schedule    done"
+    "not-important  delegate  eliminate   done";
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #fdfdfd;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .platform {
+      display: grid;
+      grid-template-columns: 45px 350px 350px;
+      grid-template-rows: 45px 350px 350px 350px;
+      grid-template-areas:
+        ".              urgent    not-urgent"
+        "important      do        schedule"
+        "not-important  delegate  eliminate"
+        ".              done      done";
+    }
+  }
+  
+  @media only screen and (max-width: 775px) {
+    .platform {
+      display: grid;
+      grid-template-columns: minmax(100px, 775px);
+      grid-template-rows: repeat(5, 350px);
+      grid-template-areas:
+        "do"
+        "schedule"
+        "delegate"
+        "eliminate"
+        "done";
+    }
+    .label {
+      display: none;
+    }
+  }
+  
+  .urgent {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    grid-area: urgent;
+    text-align: center;
+    user-select: none;
+  }
+  
+  .not-urgent {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    grid-area: not-urgent;
+    text-align: center;
+    user-select: none;
+  }
+  
+  .important {
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+    grid-area: important;
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    user-select: none;
+  }
+  
+  .not-important {
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+    grid-area: not-important;
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    user-select: none;
+  }
+  
+  

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { Edit, CheckSquare, XSquare } from 'react-feather';
 import useKeypress from "../../hooks/useKeyPress";

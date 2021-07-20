@@ -8,7 +8,14 @@ function AreaHeader(props) {
     return (
         <div className={ "area-title" }>
             <h2 className="title-text">{ title }</h2>
-            <button onClick={ () => add(areaKey)}><PlusSquare /></button>
+            {
+                areaKey === "doneArea" 
+            ?
+                null
+            :
+                <button onClick={ () => add(areaKey)}><PlusSquare /></button>
+            }
+            
         </div>
     )
 }

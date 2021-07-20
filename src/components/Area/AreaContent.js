@@ -6,7 +6,7 @@ import Todo from '../Todo/Todo';
 import './AreaContent.css'
 
 function AreaContent(props) {
-  const { areaKey, todos, change, remove } = props;
+  const { areaKey, todos, change, remove, checked, unchecked } = props;
 
   return (
     <div className={"area-content"}>
@@ -19,7 +19,7 @@ function AreaContent(props) {
               
             { todos.map((item, index) =>
               <CSSTransition key={item.id} classNames="item" timeout={300} exit={false}>
-                <Todo areaKey={areaKey} key={item.id} data={item} index={index} change={change} remove={remove} />
+                <Todo areaKey={areaKey} key={item.id} data={item} index={index} change={change} remove={remove} checked={checked} unchecked={unchecked} />
               </CSSTransition>)
             }
 

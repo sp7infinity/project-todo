@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { Edit, CheckSquare, XSquare } from 'react-feather';
+import { Edit, CheckSquare, CheckCircle, XCircle, XSquare } from 'react-feather';
 import useKeypress from "../../hooks/useKeyPress";
 
 import './Todo.css'
 
 function Todo(props) {
   
-  const { data, areaKey, index, change, remove } = props;
+  const { data, key, areaKey, index, change, remove, checked, unchecked } = props;
 
   const [isInputActive, setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(data.text);
+  const [isChecked, setIsChecked] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -62,6 +63,16 @@ function Todo(props) {
     setIsInputActive(true);
   }
 
+  const handleCheck = () => {
+    checked("doneArea", inputValue);
+    setIsChecked(true);
+  }
+
+  const handleUncheck = () => {
+    unchecked("doneArea", inputValue);
+    setIsChecked(false);
+  }
+
   return(
     <Draggable key={data.id} draggableId={data.id} index={index}>
       {(provided, snapshot) => 
@@ -80,19 +91,33 @@ function Todo(props) {
                 onChange={handleInputChange}
               />
               :
-              <span className="text-input">
+              <span className={`text-input ${isChecked ? "checked" : ""}`}>
                 {data.text}
               </span>
             }  
           </div>
+          {
+            areaKey === "doneArea" ?
+            null
+          :
           <div className="button-section">
             { isInputActive ?
               <button className="action-button save-button" onClick={handleSave}><CheckSquare/></button>
-            :
-              <button className="action-button edit-button" onClick={handleEdit}><Edit/></button>
+            :               
+              <button className="action-button edit-button" onClick={handleEdit}><Edit/></button>              
             }
+            {
+              isInputActive ? 
+              null
+            : 
+              isChecked ?
+              <button className="action-button uncheck-button" onClick={handleUncheck}><XCircle /></button>
+            :
+              <button className="action-button check-button" onClick={handleCheck}><CheckCircle/></button>
+            }          
             <button className="action-button remove-button" onClick={() => remove(areaKey, index)}><XSquare /></button>
-          </div>
+          </div>           
+          }
         </div>
       }
     </Draggable>

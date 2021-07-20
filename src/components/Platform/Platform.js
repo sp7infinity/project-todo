@@ -33,9 +33,23 @@ function Platform() {
     const newObj = { ...areas, [key]: area}
     setAreas(newObj);
   }
+  const checkedTodo = (key, text) => {
+    const newTodo = { id: generateId(), text: text}
+    let area = areas[key];
+    area.items.push(newTodo);
+    const newObj = { ...areas, [key]: area };
+    setAreas(newObj);
+  }
+
+  const uncheckedTodo = (key, text) => {
+    let area = areas[key];
+    area.items = area.items.filter(todo => todo.text !== text);
+    const newObj = { ...areas, [key]: area };
+    setAreas(newObj);
+  }
 
   const areaComponents = Object.entries(areas).map(([areaKey, area], index) =>
-    <Area key={areaKey} areaKey={areaKey} data={area} add={addTodo} change={changeTodo} remove={removeTodo} />
+    <Area key={areaKey} areaKey={areaKey} data={area} add={addTodo} change={changeTodo} remove={removeTodo} checked={checkedTodo} unchecked={uncheckedTodo}/>
   );
 
   return (

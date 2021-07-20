@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
-import { onDragEnd } from '../../utils/drag';
 import { generateId } from '../../utils/idgenerator';
 import { initializeData } from '../../utils/initData';
 
@@ -60,9 +58,7 @@ function Platform() {
         <div className="label important">Important</div>
         <div className="label not-important">Not important</div>
 
-      <DragDropContext onDragEnd={result => onDragEnd(result, areas, setAreas)}>
         {areaComponents}
-      </DragDropContext>
     </div>
   )
 }

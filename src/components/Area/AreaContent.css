@@ -13,15 +13,3 @@
     overflow-x: hidden;
     padding: 5px;
   }
-  
-  .dragging-over {
-    background-color: var(--area-active-color);
-  }
-  
-  .item-enter {
-    background-color: var(--todo-active-color);
-  }
-  .item-enter-active {
-    background-color: var(--todo-active-color);
-    transition: 300ms ease-in;
-  }

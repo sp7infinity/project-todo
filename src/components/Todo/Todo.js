@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
 import { Edit, CheckSquare, CheckCircle, XCircle, XSquare } from 'react-feather';
 import useKeypress from "../../hooks/useKeyPress";
 
@@ -7,7 +6,7 @@ import './Todo.css'
 
 function Todo(props) {
   
-  const { data, key, areaKey, index, change, remove, checked, unchecked } = props;
+  const { data, areaKey, index, change, remove, checked, unchecked } = props;
 
   const [isInputActive, setIsInputActive] = useState(false);
   const [inputValue, setInputValue] = useState(data.text);
@@ -74,53 +73,45 @@ function Todo(props) {
   }
 
   return(
-    <Draggable key={data.id} draggableId={data.id} index={index}>
-      {(provided, snapshot) => 
-        <div
-          className={`todo ${snapshot.isDragging ? " active" : ""} ${isInputActive ? " active": ""}`}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          <div className="text-section">
-            { isInputActive ? 
-              <textarea
-                className="text-input"
-                ref={inputRef}
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-              :
-              <span className={`text-input ${isChecked ? "checked" : ""}`}>
-                {data.text}
-              </span>
-            }  
-          </div>
-          {
-            areaKey === "doneArea" ?
-            null
+
+    <div className="todo">
+      <div className={`todo ${isInputActive ? " active": ""}`}>
+        { isInputActive ? 
+          <textarea
+            className="text-input"
+            ref={inputRef}
+            value={inputValue}
+            onChange={handleInputChange}
+          />
           :
-          <div className="button-section">
-            { isInputActive ?
-              <button className="action-button save-button" onClick={handleSave}><CheckSquare/></button>
-            :               
-              <button className="action-button edit-button" onClick={handleEdit}><Edit/></button>              
-            }
-            {
-              isInputActive ? 
-              null
-            : 
-              isChecked ?
-              <button className="action-button uncheck-button" onClick={handleUncheck}><XCircle /></button>
-            :
-              <button className="action-button check-button" onClick={handleCheck}><CheckCircle/></button>
-            }          
-            <button className="action-button remove-button" onClick={() => remove(areaKey, index)}><XSquare /></button>
-          </div>           
-          }
-        </div>
+          <span className={`text-input ${isChecked ? "checked" : ""}`}>
+            {data.text}
+          </span>
+        }  
+      </div>
+      {
+        areaKey === "doneArea" ?
+        null
+      :
+      <div className="button-section">
+        { isInputActive ?
+          <button className="action-button save-button" onClick={handleSave}><CheckSquare/></button>
+        :               
+          <button className="action-button edit-button" onClick={handleEdit}><Edit/></button>              
+        }
+        {
+          isInputActive ? 
+          null
+        : 
+          isChecked ?
+          <button className="action-button uncheck-button" onClick={handleUncheck}><XCircle /></button>
+        :
+          <button className="action-button check-button" onClick={handleCheck}><CheckCircle/></button>
+        }          
+        <button className="action-button remove-button" onClick={() => remove(areaKey, index)}><XSquare /></button>
+      </div>           
       }
-    </Draggable>
+    </div>
   );
 }
 
